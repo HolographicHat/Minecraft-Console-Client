@@ -72,7 +72,7 @@ public sealed class DialogManager
             _current = instance;
         }
 
-        _client.Log.Info("§e" + string.Format(Translations.dialog_received, instance.Definition.DisplayTitle()));
+        _client.Log.Info("§e" + string.Format(Translations.dialog_received, instance.Definition.DisplayTitle() + "§e"));
         DialogShown?.Invoke(instance);
         return instance;
     }
