@@ -8,10 +8,12 @@ public static class DialogFormatter
 {
     public static string DisplayTitle(this DialogDefinition definition)
     {
+        string title;
         if (!string.IsNullOrWhiteSpace(definition.ExternalTitle))
-            return definition.ExternalTitle!;
-
-        return string.IsNullOrWhiteSpace(definition.Title) ? DisplayType(definition.Type) : definition.Title;
+            title = definition.ExternalTitle!;
+        else
+            title = string.IsNullOrWhiteSpace(definition.Title) ? DisplayType(definition.Type) : definition.Title;
+        return title + "§r";
     }
 
     private const int BoxWidth = 50;
@@ -25,7 +27,7 @@ public static class DialogFormatter
         builder.AppendLine(border);
 
         foreach (var body in instance.Definition.Body.Where(static body => !string.IsNullOrWhiteSpace(body.Text)))
-            builder.AppendLine(body.Text);
+            builder.AppendLine(body.Text + "§r");
 
         if (instance.Definition.Inputs.Count > 0)
         {
@@ -34,7 +36,7 @@ public static class DialogFormatter
             {
                 instance.Values.TryGetValue(input.Key, out var value);
                 value ??= input.InitialValue;
-                builder.AppendLine(string.Format(Translations.dialog_render_input, input.Key, DescribeKind(input.Kind), input.Label, value, DescribeInput(input)));
+                builder.AppendLine(string.Format(Translations.dialog_render_input, input.Key, DescribeKind(input.Kind), input.Label + "§r", value, DescribeInput(input)));
             }
         }
 
@@ -42,7 +44,7 @@ public static class DialogFormatter
         {
             builder.AppendLine(Translations.dialog_render_actions);
             foreach (var action in instance.Definition.Actions)
-                builder.AppendLine(string.Format(Translations.dialog_render_action, action.Index, action.Label, DescribeAction(action.Action)));
+                builder.AppendLine(string.Format(Translations.dialog_render_action, action.Index, action.Label + "§r", DescribeAction(action.Action)));
         }
 
         builder.AppendLine();

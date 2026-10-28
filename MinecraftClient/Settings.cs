@@ -1460,6 +1460,9 @@ namespace MinecraftClient
                         case "serverport":
                             varData = InternalConfig.ServerPort;
                             return true;
+                        case "datetimefile":
+                            varData = DateTime.Now.ToString("yyyyMMdd-HHmmss");
+                            return true;
                         case "datetime":
                             varData = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                             return true;

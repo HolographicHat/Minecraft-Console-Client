@@ -2352,6 +2352,12 @@ Logging in...</value>
   <data name="cmd.nameitem.desc" xml:space="preserve">
     <value>Set an item name when an Anvil inventory is active and the item is in the first slot.</value>
   </data>
+  <data name="cmd.pos.desc" xml:space="preserve">
+    <value>Show the current position of the player.</value>
+  </data>
+  <data name="cmd.pos.current" xml:space="preserve">
+    <value>Current location</value>
+  </data>
   <data name="cmd.recipebook.craft.failed" xml:space="preserve">
     <value>Failed to send recipe book craft request for {0}.</value>
   </data>
